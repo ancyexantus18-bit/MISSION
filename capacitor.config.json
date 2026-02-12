@@ -1,0 +1,6 @@
+{
+  "appId": "com.mission.app",
+  "appName": "Mission",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
