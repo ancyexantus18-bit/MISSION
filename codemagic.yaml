@@ -12,10 +12,10 @@ workflows:
         script: |
           npx cap init Mission com.ancyexantus.mission --web-dir dist
           npx cap add android
-          npx cap copy
       - name: Build Android APK
         script: |
           cd android
+          chmod +x gradlew
           ./gradlew assembleDebug
     artifacts:
       - android/app/build/outputs/apk/**/*.apk
