@@ -1,11 +1,21 @@
-scripts:
-  - name: Install Capacitor tools
-    script: |
-      npm install @capacitor/cli @capacitor/core @capacitor/android
-  - name: Add Android platform
-    script: |
-      npx cap add android
-  - name: Build Android APK
-    script: |
-      cd android
-      ./gradlew assembleDebug
+workflows:
+  android-workflow:
+    name: Mission APK Build
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    scripts:
+      - name: Install dependencies and Capacitor
+        script: |
+          npm install
+          npm install @capacitor/cli @capacitor/core @capacitor/android
+      - name: Initialize and Add Android platform
+        script: |
+          npx cap init Mission com.ancyexantus.mission --web-dir dist
+          npx cap add android
+          npx cap copy
+      - name: Build Android APK
+        script: |
+          cd android
+          ./gradlew assembleDebug
+    artifacts:
+      - android/app/build/outputs/apk/**/*.apk
