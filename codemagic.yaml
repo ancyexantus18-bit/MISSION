@@ -1,0 +1,11 @@
+scripts:
+  - name: Install Capacitor tools
+    script: |
+      npm install @capacitor/cli @capacitor/core @capacitor/android
+  - name: Add Android platform
+    script: |
+      npx cap add android
+  - name: Build Android APK
+    script: |
+      cd android
+      ./gradlew assembleDebug
